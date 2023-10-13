@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "e2d112db-1dda-4523-b03c-86089d9da801",
+		"name": "Json-mapper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24745741",
+		"_collection_link": "https://interstellar-crescent-253112.postman.co/workspace/dfsdf~ab9a2158-73df-4e5c-ad1b-833cc6d3ba62/collection/24745741-e2d112db-1dda-4523-b03c-86089d9da801?action=share&source=collection_link&creator=24745741"
+	},
+	"item": [
+		{
+			"name": "1. JsonMapper-to-response",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Records\": [\r\n    {\r\n      \"eventVersion\": \"1.0\",\r\n      \"ses\": {\r\n        \"receipt\": {\r\n          \"timestamp\": \"2015-09-11T20:32:33.936Z\",\r\n          \"processingTimeMillis\": 222,\r\n          \"recipients\": [\r\n            \"recipient@example.com\"\r\n          ],\r\n          \"spamVerdict\": {\r\n            \"status\": \"PASS\"\r\n          },\r\n          \"virusVerdict\": {\r\n            \"status\": \"PASS\"\r\n          },\r\n          \"spfVerdict\": {\r\n            \"status\": \"PASS\"\r\n          },\r\n          \"dkimVerdict\": {\r\n            \"status\": \"PASS\"\r\n          },\r\n          \"dmarcVerdict\": {\r\n            \"status\": \"PASS\"\r\n          },\r\n          \"dmarcPolicy\": \"reject\",\r\n          \"action\": {\r\n            \"type\": \"SNS\",\r\n            \"topicArn\": \"arn:aws:sns:us-east-1:012345678912:example-topic\"\r\n          }\r\n        },\r\n        \"mail\": {\r\n          \"timestamp\": \"2015-09-11T20:32:33.936Z\",\r\n          \"source\": \"61967230-7A45-4A9D-BEC9-87CBCF2211C9@example.com\",\r\n          \"messageId\": \"d6iitobk75ur44p8kdnnp7g2n800\",\r\n          \"destination\": [\r\n            \"recipient@example.com\"\r\n          ],\r\n          \"headersTruncated\": false,\r\n          \"headers\": [\r\n            {\r\n              \"name\": \"Return-Path\",\r\n              \"value\": \"<0000014fbe1c09cf-7cb9f704-7531-4e53-89a1-5fa9744f5eb6-000000@amazonses.com>\"\r\n            },\r\n            {\r\n              \"name\": \"Received\",\r\n              \"value\": \"from a9-183.smtp-out.amazonses.com (a9-183.smtp-out.amazonses.com [54.240.9.183]) by inbound-smtp.us-east-1.amazonaws.com with SMTP id d6iitobk75ur44p8kdnnp7g2n800 for recipient@example.com; Fri, 11 Sep 2015 20:32:33 +0000 (UTC)\"\r\n            },\r\n            {\r\n              \"name\": \"DKIM-Signature\",\r\n              \"value\": \"v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1442003552; h=From:To:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Date:Message-ID:Feedback-ID; bh=DWr3IOmYWoXCA9ARqGC/UaODfghffiwFNRIb2Mckyt4=; b=p4ukUDSFqhqiub+zPR0DW1kp7oJZakrzupr6LBe6sUuvqpBkig56UzUwc29rFbJF hlX3Ov7DeYVNoN38stqwsF8ivcajXpQsXRC1cW9z8x875J041rClAjV7EGbLmudVpPX 4hHst1XPyX5wmgdHIhmUuh8oZKpVqGi6bHGzzf7g=\"\r\n            },\r\n            {\r\n              \"name\": \"From\",\r\n              \"value\": \"sender@example.com\"\r\n            },\r\n            {\r\n              \"name\": \"To\",\r\n              \"value\": \"recipient@example.com\"\r\n            },\r\n            {\r\n              \"name\": \"Subject\",\r\n              \"value\": \"Example subject\"\r\n            },\r\n            {\r\n              \"name\": \"MIME-Version\",\r\n              \"value\": \"1.0\"\r\n            },\r\n            {\r\n              \"name\": \"Content-Type\",\r\n              \"value\": \"text/plain; charset=UTF-8\"\r\n            },\r\n            {\r\n              \"name\": \"Content-Transfer-Encoding\",\r\n              \"value\": \"7bit\"\r\n            },\r\n            {\r\n              \"name\": \"Date\",\r\n              \"value\": \"Fri, 11 Sep 2015 20:32:32 +0000\"\r\n            },\r\n            {\r\n              \"name\": \"Message-ID\",\r\n              \"value\": \"<61967230-7A45-4A9D-BEC9-87CBCF2211C9@example.com>\"\r\n            },\r\n            {\r\n              \"name\": \"X-SES-Outgoing\",\r\n              \"value\": \"2015.09.11-54.240.9.183\"\r\n            },\r\n            {\r\n              \"name\": \"Feedback-ID\",\r\n              \"value\": \"1.us-east-1.Krv2FKpFdWV+KUYw3Qd6wcpPJ4Sv/pOPpEPSHn2u2o4=:AmazonSES\"\r\n            }\r\n          ],\r\n          \"commonHeaders\": {\r\n            \"returnPath\": \"0000014fbe1c09cf-7cb9f704-7531-4e53-89a1-5fa9744f5eb6-000000@amazonses.com\",\r\n            \"from\": [\r\n              \"sender@example.com\"\r\n            ],\r\n            \"date\": \"Fri, 11 Sep 2015 20:32:32 +0000\",\r\n            \"to\": [\r\n              \"recipient@example.com\"\r\n            ],\r\n            \"messageId\": \"<61967230-7A45-4A9D-BEC9-87CBCF2211C9@example.com>\",\r\n            \"subject\": \"Example subject\"\r\n          }\r\n        }\r\n      },\r\n      \"eventSource\": \"aws:ses\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/json-mapper/map-data",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"json-mapper",
+						"map-data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. getJSON-EmailFileAttached",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mail\":\"test1-att.eml\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/email/parse-json",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"email",
+						"parse-json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. getJSON-EmailToDIrectLink",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mail\":\"test2-link.eml\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/email/parse-json",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"email",
+						"parse-json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.getJSON-EmailToWebToLink",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mail\":\"testing-3.eml\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/email/parse-web-link",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"email",
+						"parse-web-link"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
