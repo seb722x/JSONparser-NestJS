@@ -11,7 +11,7 @@ import * as path from 'path';
 import { simpleParser, ParsedMail } from 'mailparser';
 import * as cheerio from 'cheerio';
 import axios, { AxiosResponse } from 'axios';
-import { JsonAttachment } from 'src/interfaces/JsonAttached.inerface';
+import { JsonAttachment } from './interfaces/JsonAttached.inerface';
 
 @Injectable()
 export class MailparserService {
