@@ -6,5 +6,6 @@ import { MappedResponse } from 'src/model/mapped-response.model';
 export class JsonMapperService {
   private readonly logger = new Logger('MailParserService');
 
+  
 
 }
