@@ -1,0 +1,19 @@
+MIME-Version: 1.0
+Date: Wed, 11 Oct 2023 18:18:34 -0500
+Message-ID: <CALq_0ysfzT4+htH_7G=VBAiMvgqgWju6pt8USUQm+8dmbAMgFw@mail.gmail.com>
+Subject: testing-3
+From: =?UTF-8?Q?juan_avenda=C3=B1o?= <juan.avendano722@gmail.com>
+To: =?UTF-8?Q?juan_avenda=C3=B1o?= <juan.avendano722@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000f857e80607790a15"
+
+--000000000000f857e80607790a15
+Content-Type: text/plain; charset="UTF-8"
+
+http://localhost:3000/static-host
+
+--000000000000f857e80607790a15
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr"><a href="http://localhost:3000/static-host">http://localhost:3000/static-host</a><br></div>
+
+--000000000000f857e80607790a15--
