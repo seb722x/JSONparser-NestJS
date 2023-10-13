@@ -4,7 +4,8 @@ import {
     Body,
   } from '@nestjs/common';
   import { JsonMapperService } from './json-mapper.service';
-  import { MappedResponse } from 'src/model/mapped-response.model';
+import { MappedResponse } from './models/mapped-response.model';
+
   
   @Controller('json-mapper')
   export class JsonMapperController {
