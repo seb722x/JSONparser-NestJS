@@ -54,7 +54,7 @@ export class MailparserService {
         return JsonData;
       }
     } catch (error) {
-      const message = 'Error retrieving JSON data';
+      const message = 'Error retrieving JSON data, the file could not be a JSON';
       this.handleErrors(error, message);
     }
   }
@@ -71,7 +71,7 @@ export class MailparserService {
     }
   }
 
-  async isLinkInBody(parsedMail:ParsedMail): Promise<any> {
+  async isLinkInBody(parsedMail:ParsedMail) {
     try {
       const body: any = parsedMail.html || parsedMail.text;
       const links = [];
@@ -100,14 +100,21 @@ export class MailparserService {
   }
 
   private async  scanDirectLinks(directDownloadLinks: string[]){
-    const jsonDataArray = await Promise.all(
-      directDownloadLinks.map((link) => this.getDataFromURL(link)),
-    );
-    if (jsonDataArray.length === 1) {
-      return jsonDataArray[0];
-    } else {
-      return jsonDataArray;
+    try{
+
+      const jsonDataArray = await Promise.all(
+        directDownloadLinks.map((link) => this.getDataFromURL(link)),
+      );
+      if (jsonDataArray.length === 1) {
+        return jsonDataArray[0];
+      } else {
+        return jsonDataArray;
+      }
+    }catch(error){
+       const message = 'The file could not be a JSON extension';
+       this.handleErrors(error, message);
     }
+    
   }
 
   private isDirectDownloadLink(link: string): boolean {
@@ -151,7 +158,7 @@ export class MailparserService {
     }
   }
 
-  async getDataFromURL(downloadLink: string): Promise<any> {
+  async getDataFromURL(downloadLink: string) {
     try {
       const response: AxiosResponse = await axios.get(downloadLink, {
         responseType: 'json',
