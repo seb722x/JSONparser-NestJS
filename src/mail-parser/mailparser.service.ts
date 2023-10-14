@@ -86,18 +86,27 @@ export class MailparserService {
         this.isDirectDownloadLink(link),
       );
       if (directDownloadLinks.length > 0) {
-        const jsonDataArray = await Promise.all(
-          directDownloadLinks.map((link) => this.getDataFromURL(link)),
-        );
-        return jsonDataArray;
+        const JSONData =await this.scanDirectLinks(directDownloadLinks);
+        return JSONData
       } else {
-        const downloadLink = await this.getlinkDownload(links[0]);
-        const jsonData = await this.getDataFromURL(downloadLink);
-        return jsonData;
+        const webLink = await this.getWebLinksDownload(links[0]);        
+        const JSONData = await this.scanDirectLinks(webLink);
+        return JSONData;
       }
     } catch (error) {
-      const message = 'Error parsing Json to string';
-      this.handleErrors(error, message);
+        const message = 'Error parsing Json to string';
+        this.handleErrors(error, message);
+    }
+  }
+
+  private async  scanDirectLinks(directDownloadLinks: string[]){
+    const jsonDataArray = await Promise.all(
+      directDownloadLinks.map((link) => this.getDataFromURL(link)),
+    );
+    if (jsonDataArray.length === 1) {
+      return jsonDataArray[0];
+    } else {
+      return jsonDataArray;
     }
   }
 
@@ -108,33 +117,37 @@ export class MailparserService {
     if (
       commonDownloadKeywords.some((keyword) =>
         link.toLowerCase().includes(keyword),
-      )
-    ) {
+      )) {
       return true;
     }
 
     if (
       commonFileExtensions.some((extension) =>
         link.toLowerCase().endsWith(extension),
-      )
-    ) {
+      )){
       return true;
     }
-
     return false;
   }
 
-  async getlinkDownload(webLink: string) {
+  async getWebLinksDownload(webLink: string) {
     try {
       const response = await axios.get(webLink);
       const $ = cheerio.load(response.data);
-      const downloadLink = $('a').attr('href');
-
-      return downloadLink;
-    } catch (error) {
-      const message =
-        'Error in web page when looking for a direct download link';
+      
+      const links: string[] = [];
+      $('a').each((index, element) => {
+        const link = $(element).attr('href');
+        if (link) {
+          links.push(link);
+        }
+      });
+  
+      return links;
+    }catch (error) {
+      const message = 'Error in web page when looking for download links';
       this.handleErrors(error, message);
+      return []; 
     }
   }
 

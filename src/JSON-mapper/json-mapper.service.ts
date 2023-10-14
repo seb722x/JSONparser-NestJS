@@ -28,39 +28,39 @@ export class JsonMapperService {
   }
 
   private mapSpam(input: AwsSesEvent): boolean {
-    return input.Records[0]?.ses?.receipt?.spamVerdict?.status === 'PASS';
+    return input.Records[0].ses.receipt.spamVerdict.status === 'PASS';
   }
 
   private mapVirus(input: AwsSesEvent): boolean {
-    return input.Records[0]?.ses?.receipt?.virusVerdict?.status === 'PASS';
+    return input.Records[0].ses.receipt.virusVerdict.status === 'PASS';
   }
 
   private mapDNS(input: AwsSesEvent): boolean {
     return (
-      input.Records[0]?.ses?.receipt?.spfVerdict?.status === 'PASS' &&
-      input.Records[0]?.ses?.receipt?.dkimVerdict?.status === 'PASS' &&
-      input.Records[0]?.ses?.receipt?.dmarcVerdict?.status === 'PASS'
+      input.Records[0].ses.receipt.spfVerdict.status === 'PASS' &&
+      input.Records[0].ses.receipt.dkimVerdict.status === 'PASS' &&
+      input.Records[0].ses.receipt.dmarcVerdict.status === 'PASS'
     );
   }
 
   private mapMes(input: AwsSesEvent): string {
-    return new Date(input.Records[0]?.ses?.mail?.timestamp).toLocaleString(
+    return new Date(input.Records[0].ses.mail.timestamp).toLocaleString(
       'default',
       { month: 'long' },
     );
   }
 
   private mapRetrasado(input: AwsSesEvent): boolean {
-    return input.Records[0]?.ses?.receipt?.processingTimeMillis > 1000;
+    return input.Records[0].ses.receipt.processingTimeMillis > 1000;
   }
 
   private mapEmisor(input: AwsSesEvent): string {
-    return input.Records[0]?.ses?.mail?.source.split('@')[0];
+    return input.Records[0].ses.mail.source.split('@')[0];
   }
 
   private mapReceptor(input: AwsSesEvent): string[] {
     return (
-      input.Records[0]?.ses?.mail?.destination.map(
+      input.Records[0].ses.mail.destination.map(
         (email: string) => email.split('@')[0],
       ) || []
     );
