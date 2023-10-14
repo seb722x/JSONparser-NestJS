@@ -17,10 +17,10 @@ import { JsonAttachment } from './interfaces/JsonAttached.inerface';
 export class MailparserService {
   private readonly logger = new Logger('MailParserService');
 
-  async parseEmailAttached(fileName: string) {
+   async parseEmailAttached(fileName: string) {
     try {
       const emlContent = this.getEmailContent(fileName);
-      return await this.parsedEmail(emlContent);
+      return  await this.parsedEmail(emlContent);
     } catch (error) {
       const message = 'Error processing e-mail, check logs';
       this.handleErrors(error, message);
@@ -192,7 +192,6 @@ export class MailparserService {
 
   private handleErrors(error: any, customMessage: string): void {
     this.logger.error(`${customMessage} => ${error}`);
-    error;
     let statusCode = 500;
     statusCode = error.response.status;
     switch (statusCode) {
